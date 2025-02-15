@@ -23,7 +23,9 @@ mongoose
     console.log("Connect error!", error);
   });
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({ origin: "https://kiem-thu-fiverr-fe.vercel.app", credentials: true })
+);
 // app.use(cors());
 app.use(cookieParser());
 app.use(
@@ -39,6 +41,9 @@ app.use("/api/gigs", gigRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.get("/", (req, res) => {
+  res.send("API đã được chạy");
+});
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
